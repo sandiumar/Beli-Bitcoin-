@@ -10,46 +10,42 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText rp, btc;
-    Double Hasil, dRp, dBtc;
-
-
+   EditText rp, btc;
+   Double hsl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Inisialisasi Variabel
-        rp = (EditText)findViewById(R.id.nom_rp);
-        rp.addTextChangedListener(watchRp);
         btc = (EditText)findViewById(R.id.nom_bitcoin);
 
+        rp = (EditText)findViewById(R.id.nom_rp);
+        rp.addTextChangedListener(watchRp);
+
+
 
     }
-
-    public void konver(){
-        //konversi inputan ke double
-        dBtc= Double.parseDouble(btc.getText().toString());
-
-    }
-
 
     private TextWatcher watchRp = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+
         }
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            Double rP = Double.parseDouble(rp.getText().toString());
 
+            hsl = rP * 93.650;
+
+            rp.setText(Double.toString(hsl));
         }
 
         @Override
         public void afterTextChanged(Editable editable) {
-            dRp = dBtc * 93.630;
-           btc.setText(dRp.toString());
+
         }
     };
 }
