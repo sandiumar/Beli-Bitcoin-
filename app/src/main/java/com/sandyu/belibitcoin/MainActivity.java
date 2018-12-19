@@ -18,34 +18,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btc = (EditText)findViewById(R.id.nom_bitcoin);
-
-        rp = (EditText)findViewById(R.id.nom_rp);
-        rp.addTextChangedListener(watchRp);
+        btc =  findViewById(R.id.nom_bitcoin);
+        rp = findViewById(R.id.nom_rp);
 
 
+        btc.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                Double Btc = Double.parseDouble(btc.getText().toString());
+
+                Double hsl = Btc * 93.6500;
+
+
+                rp.setText(String.valueOf(hsl));
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
-    private TextWatcher watchRp = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
 
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            Double rP = Double.parseDouble(rp.getText().toString());
-
-            hsl = rP * 93.650;
-
-            rp.setText(Double.toString(hsl));
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
 }
