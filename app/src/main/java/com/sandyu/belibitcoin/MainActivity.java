@@ -10,8 +10,14 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-   EditText rp, btc;
+   private EditText rp, btc;
    Double hsl;
+
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btc =  findViewById(R.id.nom_bitcoin);
+
         rp = findViewById(R.id.nom_rp);
+
 
 
         btc.addTextChangedListener(new TextWatcher() {
@@ -30,11 +38,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Double Btc = Double.parseDouble(btc.getText().toString());
+                String Btc = btc.getText().toString();
+                
+                //Error handling konversi bilangan
+                int BTC = 0;
+                try {
+                    BTC = Integer.parseInt(Btc);
+                } catch (NumberFormatException nfe){
+                    nfe.printStackTrace();
+                }
 
-                Double hsl = Btc * 93.6500;
+               int RP = Integer.parseInt("93650");
 
-
+                int hsl = BTC * RP;
                 rp.setText(String.valueOf(hsl));
 
             }
