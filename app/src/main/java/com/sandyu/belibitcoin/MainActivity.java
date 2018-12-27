@@ -44,32 +44,31 @@ public class MainActivity extends AppCompatActivity {
                 String rP = rp.getText().toString().trim();
 
                 //Error handling btc
-                long BTC = 0;
+               double BTC = 0;
+               try {
+                   BTC = Double.parseDouble(Btc);
+               }catch (NumberFormatException nfe){
+                   nfe.printStackTrace();
+               }
 
-                try {
-                    BTC = Long.parseLong(Btc);
-                } catch (NumberFormatException nfe){
-                    nfe.printStackTrace();
-                }
 
-                //Format digit 3 angka
-                /*DecimalFormat formatter = new DecimalFormat("#,###,###");
-                String  rp_format = formatter.format(93650);
-                long hsl_konversi = Long.parseLong(rp_format); */
+
 
 
                 //Error handling rp
-                long RP = 93650;
+                double RP = 93650;
+
                 try{
-                    RP = Long.parseLong(rP);
+                    RP = Double.parseDouble(rP);
                 } catch (NumberFormatException nfc){
                     nfc.printStackTrace();
                 }
 
-
-
-               Long hsl = BTC * RP;
-                rp.setText(String.valueOf(hsl));
+                //Mengubah hasil konversi menjadi digit 3
+                NumberFormat formatter = new DecimalFormat("#,###,###");
+               double hsl = BTC * RP;
+               String hsl_format = formatter.format(hsl);
+                rp.setText(String.valueOf(hsl_format));
 
                 //Disable Button Lanjut
                 lanjut.setEnabled(!Btc.isEmpty() && !rP.isEmpty());
